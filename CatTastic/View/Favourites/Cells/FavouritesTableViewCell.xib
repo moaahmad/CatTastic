@@ -76,8 +76,6 @@
                 <outlet property="gradientView" destination="Po5-Q8-oFg" id="WLa-3w-TKd"/>
                 <outlet property="subtitleLabel" destination="dBh-dh-lpZ" id="GCH-ui-2II"/>
                 <outlet property="titleLabel" destination="Kau-tb-ztm" id="YQl-bT-Qpq"/>
-                <outlet property="viewHeight" destination="Q9t-Qf-PeN" id="HAZ-fh-AV9"/>
-                <outlet property="viewTopConstraint" destination="sHJ-Fe-If2" id="4TB-Oy-dLJ"/>
             </connections>
             <point key="canvasLocation" x="180.43478260869566" y="195.53571428571428"/>
         </tableViewCell>

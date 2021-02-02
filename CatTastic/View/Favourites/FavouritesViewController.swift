@@ -2,13 +2,11 @@
 //  FavouritesViewController.swift
 //  CatTastic
 //
-//  Created by Mohammed Ahmad on 30/1/21.
-//
 import UIKit
 
 final class FavouritesViewController: BaseViewController {
     // MARK: - IBOutlets
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private(set) var tableView: UITableView!
     
     // MARK: - Properties
     let dataSource = FavouritesDataSource()

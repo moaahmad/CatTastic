@@ -2,8 +2,6 @@
 //  CatBreedsDetailViewController.swift
 //  CatTastic
 //
-//  Created by Mohammed Ahmad on 29/1/21.
-//
 import UIKit
 
 final class CatBreedsDetailViewController: BaseViewController {
@@ -37,7 +35,6 @@ final class CatBreedsDetailViewController: BaseViewController {
     // MARK: - View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        makeNavigationBarTransparent()
         configureUI(with: viewModel.catBreed)
         styleUI()
     }

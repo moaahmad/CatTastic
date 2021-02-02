@@ -9,10 +9,10 @@ final class FavouritesTableViewCell: UITableViewCell {
     static let nibID = "FavouritesTableViewCell"
 
     // MARK: - IBOutlets
-    @IBOutlet weak var favouriteImageView: UIImageView!
-    @IBOutlet weak var gradientView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet private(set) var favouriteImageView: UIImageView!
+    @IBOutlet private(set) var gradientView: UIView!
+    @IBOutlet private(set) var titleLabel: UILabel!
+    @IBOutlet private(set) var subtitleLabel: UILabel!
 
     // MARK: - Override Methods
     override func prepareForReuse() {

@@ -9,16 +9,16 @@ final class BreedCollectionViewCell: UICollectionViewCell {
     static let nibName = "BreedCollectionViewCell"
     
     // MARK: - IBOutlets
-    @IBOutlet weak var cellView: UIView! {
+    @IBOutlet private(set) var cellView: UIView! {
         didSet {
             cellView.layer.masksToBounds = true
             cellView.layer.cornerRadius = 20
             cellView.heightAnchor.constraint(equalToConstant: 230).isActive = true
         }
     }
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var gradientView: UIView!
-    @IBOutlet weak var breedNameLabel: UILabel!
+    @IBOutlet private(set) var imageView: UIImageView!
+    @IBOutlet private(set) var gradientView: UIView!
+    @IBOutlet private(set) var breedNameLabel: UILabel!
 
     // MARK: - Override Methods
     override func prepareForReuse() {

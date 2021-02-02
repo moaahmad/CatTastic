@@ -1,0 +1,14 @@
+# Lyst iOS Technical Task
+## CatTastic
+### Architecture
+The `MVVM-C` archeticture was implemeted in this solution as I wanted a flexible code base that allowed me to decouple the `View` from any business logic and only concern itself with UI presentation and user interaction. By using `ViewModels` it would also allow for easier unit testing and potential reuse of key components. The use of the `Coordinator` pattern provides greater flexibilty for reusing VCs and also helps keep the `ViewController` unaware of the navigation logic
+
+### Known Issues & Limitations
+ - Due to time constraints I am currently using `UserDefaults` for persistence. This isn't ideal for a scalable solution, as it should only be used for small bits of data - like strings or integers etc. Moving forward this implementation should utilise `CoreData` or `Realm` as an offline database. 
+ - The `Coordinator` pattern i've implemented doesn't include a separate `Router` protocol and concrete class. Instead I've currently just added the typical router methods in an extension on the `Coordinator` protocol - for now, I think it'll do, but that should be changed. Also, there is only one `Coordinator` protocol that all the concrete implementations adhere to. If I had more time I would have liked to create `ParentCoordinator` and `ChildCoordinator` protocols for greater flexibilty.
+ - Image downloading and caching is currently done using the third-party library, `Kingfisher`. Ideally, a native implementation utlising `URLSession` and `NSCache` should replace it to negate the need for external dependencies and extra baggage in the code base.
+ - The level of unit testing for the application is currently low, as I only had time to test the `NetworkService` and the `FavouritesDataSource`. With more time I would have liked to extend the coverage to include more of the *ViewModels* and *Views*. By doing this, not only would we have more confidence that the app works as expected even if we were to change the code later, but we would also find out which parts of the code are tightly coupled and thus difficult to test.
+
+### Frameworks
+- **SwiftLint**: To ensure the code is of high quality and standards are maintained throughout development, the Xcode project is integrated with [Swiftlint](https://github.com/realm/SwiftLint) to provide static code analysis. To see the configuration of Swiftlint, take a look at `.swiftlint.yml` file located at the root of the project.
+- **KingFisher**: Due the time constraints, I used the [Kingfisher](https://github.com/onevcat/Kingfisher) library for downloading and caching images from the web.

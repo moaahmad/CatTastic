@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  CatTastic
+  
+*/
+
+"search_tab_title" = "CatTastic";
+"search_bar_placeholder" = "Search for any breed of cat!";
+
+"favourites_tab_title" = "Favourites";
+
+"back" = "Back";
+
+"error_title" = "Error Alert 😱";
+"okay_action_title" = "Okay";
+
+"wiki_error_title" = "Oops..";
+"wiki_error_message" = "This one doesn't seem to have a Wikipedia page... 🤔";
+;

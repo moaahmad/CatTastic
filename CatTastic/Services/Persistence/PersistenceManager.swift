@@ -9,12 +9,13 @@ enum PersistenceActionType {
 }
 
 struct PersistenceManager: Persistable {
-    static private let defaults = UserDefaults.standard
+    static private let defaults = UserDefaults.standard // TPC: one static instance
     
     enum Keys {
-        static let favourites = "favourites"
+        static let favourites = "favourites" // CR: make this an string enum
     }
     
+    // TPC: No need for weak self as there is no chance of a reference cycle given that this file is static
     static func updateWith(cat: CatBreed,
                            actionType: PersistenceActionType,
                            completion: @escaping (PersistenceError?) -> Void) {
@@ -38,9 +39,10 @@ struct PersistenceManager: Persistable {
         }
     }
     
+    // TPC: could talk about why you made this escaping (also does this need to be escaping)
     static func retrieveFavourites(completion: @escaping (Result<[CatBreed], PersistenceError>) -> Void) {
         guard let favouritesData = defaults.object(forKey: Keys.favourites) as? Data else {
-            completion(.success([]))
+            completion(.success([])) // CR: would this not be better as a failure (I don't know) but it seems here that you were not able to do what you hoped to
             return
         }
         do {
@@ -51,7 +53,7 @@ struct PersistenceManager: Persistable {
         }
     }
     
-    static func save(favourites: [CatBreed]) -> PersistenceError? {
+    static func save(favourites: [CatBreed]) -> PersistenceError? { // CR: I think that this func should throw, then higher up you can try? ... this way this class is conrete
         do {
             let encodedFavorites = try JSONEncoder().encode(favourites)
             defaults.set(encodedFavorites, forKey: Keys.favourites)

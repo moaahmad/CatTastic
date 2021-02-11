@@ -6,7 +6,7 @@ import UIKit
 
 class BaseViewController: UIViewController, Storyboarded {
     // MARK: - Properties
-    weak var coordinator: Coordinator?
+    weak var coordinator: Coordinator? // TPC: Could talk about why your coordinator is weak
     var client: NetworkClient?
 
     private var containerView: UIView!
@@ -39,6 +39,7 @@ extension BaseViewController {
             self.containerView.alpha = 0.8
         }
         
+        // TPC: woah, storyboard & programmatic, are you flexing on them ... tell em why you did this, what your options were and what you ould do .. same with the above
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             activityIndicator.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: 40),
@@ -50,7 +51,7 @@ extension BaseViewController {
     
     
     func dismissLoadingView() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { // TCP: why you used DispatchQueue + problems associated with not using it 
             self.containerView.removeFromSuperview()
             self.containerView = nil
         }

@@ -4,6 +4,8 @@
 //
 import Foundation
 
+// CR: Split NetworkClient into a protocol
+// TPC: Talk about how having it as a protocol allows you to have whatever client you wanted, say you wanted AF networking or AlamoFire
 final class NetworkClient {
     var session: DataTaskable = URLSession.shared
     
@@ -38,6 +40,7 @@ final class NetworkClient {
     }
 }
 
+// TPC: file private so that it's not used eslewhere
 fileprivate extension HTTPURLResponse {
     var isSuccessful: Bool {
         (200...299).contains(statusCode)

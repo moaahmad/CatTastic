@@ -4,6 +4,7 @@
 //
 import Foundation
 
+// CR: Make this service more specific - network service means what? could be anything ...
 final class NetworkService {
     static func fetchBreedsList(client: NetworkClient?,
                                 completion: @escaping (Result<[CatBreed], Error>) -> Void) {

@@ -7,6 +7,8 @@ import UIKit
 struct CatBreedDetailViewModel {
     // MARK: - Properties
     var catBreed: CatBreed!
+    
+    // CR: There is a lot going on here - split this out into a method that tells us what is happening 
     var isAlreadyFavourite: Bool {
         var isAlreadyFavourite = false
         PersistenceManager.retrieveFavourites { result in

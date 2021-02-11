@@ -15,12 +15,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func initializeMainCoordinator() {
-        let tabBarController = UITabBarController()
+        let tabBarController = UITabBarController() // CR: Can be split into another method
         tabBarController.tabBar.itemPositioning = .centered
-        coordinator = MainCoordinator(tabBarController: tabBarController, client: NetworkClient())
+        coordinator = MainCoordinator(tabBarController: tabBarController, client: NetworkClient()) // TPC: Can talk about constror injection (making code more modular less tightly coupled)
+        
         coordinator?.start()
     
-        window?.rootViewController = coordinator?.tabBarController
+        window?.rootViewController = coordinator?.tabBarController // TAK: Can be split into another method
         window?.makeKeyAndVisible()
     }
 }

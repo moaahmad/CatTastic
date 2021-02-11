@@ -12,6 +12,7 @@ final class CatBreedsViewController: BaseViewController {
     private let dataSource = CatBreedsDataSource()
     private var viewModel: CatBreedsViewModel!
     
+    // TPC: Why lazy 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "search_bar_placeholder".localized()
@@ -24,6 +25,7 @@ final class CatBreedsViewController: BaseViewController {
     // MARK: - View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        // TPC: Explain why in future you may split this into other methods i.e. setupView(), setupData()
         configureNavigationBar()
         configureCollectionView()
         dataSource.configureDataSource(for: collectionView)
@@ -41,7 +43,7 @@ final class CatBreedsViewController: BaseViewController {
 // MARK: - Functions
 extension CatBreedsViewController {
     func configureNavigationBar() {
-        title = "search_tab_title".localized()
+        title = "search_tab_title".localized() // TPC: why strings file
         navigationItem.backButtonTitle = "back".localized()
     }
     

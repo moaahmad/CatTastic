@@ -6,7 +6,7 @@ import UIKit
 
 final class FavouritesDataSource: GenericDataSource<CatBreed>, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 1 // CR or TPC interesting, in `numberOfRowsInSection` you are using the viewmodel i think, why not here to get the sections
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,7 +26,7 @@ final class FavouritesDataSource: GenericDataSource<CatBreed>, UITableViewDataSo
     func tableView(_ tableView: UITableView, commit
                     editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+        if editingStyle == .delete { // TPC: Maybe you could talk about splitting this out into a readable function that tells us what is going on 
             let catBreed = data.value[indexPath.row]
             data.value.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)

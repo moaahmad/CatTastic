@@ -6,7 +6,7 @@ import UIKit
 
 final class CatBreedsDetailViewController: BaseViewController {
     // MARK: - Static Properties
-    static let screenHeight = UIScreen.main.bounds.height
+    static let screenHeight = UIScreen.main.bounds.height // TPC: - Lazy in the future 
     
     // MARK: - IBOutlets
     @IBOutlet private(set) var headerView: UIView!

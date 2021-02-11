@@ -35,7 +35,7 @@ extension FavouritesTableViewCell {
             favouriteImageView.image = UIImage(named: "placeholder")
             return
         }
-        gradientView.addGradientLayer(withColors: [.clear, .darkGray])
+        gradientView.addGradientLayer(withColors: [.clear, .darkGray]) // TPC: Talk how in the future you would put your cell in a protocol or use some sort of protocol so you do not repeat this line again as well as the the whole method actually ... see `BreedCollectionViewCell`
         favouriteImageView.setImage(for: catImage.url)
     }
 }

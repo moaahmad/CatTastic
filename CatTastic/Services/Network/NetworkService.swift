@@ -4,7 +4,12 @@
 //
 import Foundation
 
-final class NetworkService {
+protocol NetworkServiceProtocol {
+    static func fetchBreedsList(client: NetworkClient?,
+                                completion: @escaping (Result<[CatBreed], Error>) -> Void)
+}
+
+final class NetworkService: NetworkServiceProtocol {
     static func fetchBreedsList(client: NetworkClient?,
                                 completion: @escaping (Result<[CatBreed], Error>) -> Void) {
         let request = URLRequestPool.breedsListRequest()

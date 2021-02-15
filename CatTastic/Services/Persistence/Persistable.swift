@@ -5,7 +5,7 @@
 import Foundation
 
 protocol Persistable {
-    static func updateWith(cat: CatBreed, actionType: PersistenceActionType, completion: @escaping (PersistenceError?) -> Void)
-    static func retrieveFavourites(completion: @escaping (Result<[CatBreed], PersistenceError>) -> Void)
-    static func save(favourites: [CatBreed]) -> PersistenceError?
+    func updateWith(cat: CatBreed, actionType: PersistenceActionType, completion: @escaping (PersistenceError?) -> Void)
+    func retrieveFavourites(completion: @escaping (Result<[CatBreed], PersistenceError>) -> Void)
+    func save(favourites: [CatBreed]) -> PersistenceError?
 }

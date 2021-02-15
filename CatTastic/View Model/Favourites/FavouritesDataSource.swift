@@ -5,6 +5,12 @@
 import UIKit
 
 final class FavouritesDataSource: GenericDataSource<CatBreed>, UITableViewDataSource {
+    let persistence: Persistable
+
+    init(persistence: Persistable = PersistenceManager.shared) {
+        self.persistence = persistence
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -30,7 +36,7 @@ final class FavouritesDataSource: GenericDataSource<CatBreed>, UITableViewDataSo
             let catBreed = data.value[indexPath.row]
             data.value.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            PersistenceManager.updateWith(cat: catBreed, actionType: .remove) { _ in
+            persistence.updateWith(cat: catBreed, actionType: .remove) { _ in
                 UINotificationFeedbackGenerator().notificationOccurred(.success)
             }
         }

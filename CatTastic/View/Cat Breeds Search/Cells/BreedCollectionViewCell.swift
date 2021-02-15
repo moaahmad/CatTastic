@@ -4,7 +4,7 @@
 //
 import UIKit
 
-final class BreedCollectionViewCell: UICollectionViewCell {
+final class BreedCollectionViewCell: UICollectionViewCell, CellImageProtocol {
     static let cellID = "BreedCollectionCell"
     static let nibName = "BreedCollectionViewCell"
     
@@ -31,16 +31,8 @@ final class BreedCollectionViewCell: UICollectionViewCell {
 extension BreedCollectionViewCell {
     func configureCell(for catBreed: CatBreed) {
         breedNameLabel.text = catBreed.name
-        configureImageView(with: catBreed)
-    }
-
-    private func configureImageView(with catBreed: CatBreed) {
-        guard let catImage = catBreed.image,
-              catImage.url != nil else {
-            imageView.image = UIImage(named: "placeholder")
-            return
-        }
-        gradientView.addGradientLayer(withColors: [.clear, .darkGray])
-        imageView.setImage(for: catImage.url)
+        configureImageView(with: catBreed,
+                           imageView: imageView,
+                           gradientView: gradientView)
     }
 }

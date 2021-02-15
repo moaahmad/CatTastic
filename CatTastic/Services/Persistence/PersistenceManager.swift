@@ -9,15 +9,18 @@ enum PersistenceActionType {
 }
 
 struct PersistenceManager: Persistable {
+    static let shared = PersistenceManager()
     static private let defaults = UserDefaults.standard
     
     enum Keys {
         static let favourites = "favourites"
     }
     
-    static func updateWith(cat: CatBreed,
-                           actionType: PersistenceActionType,
-                           completion: @escaping (PersistenceError?) -> Void) {
+    private init() { }
+    
+    func updateWith(cat: CatBreed,
+                    actionType: PersistenceActionType,
+                    completion: @escaping (PersistenceError?) -> Void) {
         retrieveFavourites { result in
             switch result {
             case .success(var favourites):
@@ -38,8 +41,8 @@ struct PersistenceManager: Persistable {
         }
     }
     
-    static func retrieveFavourites(completion: @escaping (Result<[CatBreed], PersistenceError>) -> Void) {
-        guard let favouritesData = defaults.object(forKey: Keys.favourites) as? Data else {
+    func retrieveFavourites(completion: @escaping (Result<[CatBreed], PersistenceError>) -> Void) {
+        guard let favouritesData = PersistenceManager.defaults.object(forKey: Keys.favourites) as? Data else {
             completion(.success([]))
             return
         }
@@ -51,10 +54,10 @@ struct PersistenceManager: Persistable {
         }
     }
     
-    static func save(favourites: [CatBreed]) -> PersistenceError? {
+    func save(favourites: [CatBreed]) -> PersistenceError? {
         do {
             let encodedFavorites = try JSONEncoder().encode(favourites)
-            defaults.set(encodedFavorites, forKey: Keys.favourites)
+            PersistenceManager.defaults.set(encodedFavorites, forKey: Keys.favourites)
             return nil
         } catch {
             return .unableToFavourite

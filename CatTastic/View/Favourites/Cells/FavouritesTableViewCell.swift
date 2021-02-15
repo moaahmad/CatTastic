@@ -22,20 +22,12 @@ final class FavouritesTableViewCell: UITableViewCell {
 }
 
 // MARK: - Functions
-extension FavouritesTableViewCell {
+extension FavouritesTableViewCell: CellImageProtocol {
     func configureCell(for catBreed: CatBreed) {
-        configureImageView(with: catBreed)
         titleLabel.text = catBreed.name
         subtitleLabel.text = catBreed.origin
-    }
-
-    private func configureImageView(with catBreed: CatBreed) {
-        guard let catImage = catBreed.image,
-              catImage.url != nil else {
-            favouriteImageView.image = UIImage(named: "placeholder")
-            return
-        }
-        gradientView.addGradientLayer(withColors: [.clear, .darkGray])
-        favouriteImageView.setImage(for: catImage.url)
+        configureImageView(with: catBreed,
+                           imageView: favouriteImageView,
+                           gradientView: gradientView)
     }
 }

@@ -6,10 +6,12 @@ import UIKit
 
 struct CatBreedDetailViewModel {
     // MARK: - Properties
+    let persistenceManager: Persistable
+
     var catBreed: CatBreed!
     var isAlreadyFavourite: Bool {
         var isAlreadyFavourite = false
-        PersistenceManager.retrieveFavourites { result in
+        persistenceManager.retrieveFavourites { result in
             switch result {
             case .success(let favourites):
                 isAlreadyFavourite = favourites.contains { $0.id == catBreed.id }
@@ -21,8 +23,10 @@ struct CatBreedDetailViewModel {
     }
 
     // MARK: - Init
-    init(catBreed: CatBreed) {
+    init(catBreed: CatBreed,
+         persistence: Persistable = PersistenceManager.shared) {
         self.catBreed = catBreed
+        self.persistenceManager = persistence
     }
 }
 
@@ -32,8 +36,8 @@ extension CatBreedDetailViewModel {
         var isFavourite = isAlreadyFavourite
         isFavourite.toggle()
 
-        PersistenceManager.updateWith(cat: catBreed,
-                                      actionType: isFavourite ? .add : .remove) { _ in
+        persistenceManager.updateWith(cat: catBreed,
+                               actionType: isFavourite ? .add : .remove) { _ in
             completion(isFavourite)
         }
     }

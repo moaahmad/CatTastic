@@ -43,6 +43,10 @@ final class CatBreedsDetailViewController: BaseViewController {
         super.viewWillDisappear(animated)
         coordinator?.popViewController(animated: false)
     }
+
+    deinit {
+        print("Detail VC has been deallocated")
+    }
     
     // MARK: - IBActions
     @IBAction private func didTapWikipediaButton() {
